@@ -1,3 +1,0 @@
-1.Year( TODAY() )-Year( Birthdate__c )
-2.Tourist_Name__r.Age__c <  Trip__r.Minimum_Age__c
-3.ISPICKVAL( Status__c, "Past")
