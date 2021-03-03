@@ -1,0 +1,7 @@
+String line = 'My name is Irina. I like tea,cake and apple.';
+List<String> lst = new List<String>();
+
+lst.addAll(line.split(' '));
+
+System.debug(lst);
+System.debug(lst[0] + ' ' + lst[lst.size()-1]);
