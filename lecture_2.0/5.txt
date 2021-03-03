@@ -1,0 +1,6 @@
+Integer N=5;
+Integer S=0;
+for(Integer i=1;i<=N;i++){
+  S=S+i;
+}
+System.debug(S);

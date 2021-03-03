@@ -1,0 +1,26 @@
+Integer[] Arr= new Integer[11];
+Arr[0]=1;
+Arr[1]=12;
+Arr[2]=15;
+Arr[3]=29;
+Arr[4]=44;
+Arr[5]=6;
+Arr[6]=3;
+Arr[7]=8;
+Arr[8]=29;
+Arr[9]=51;
+Arr[10]=10;
+List<Integer> A1 = new List<Integer>();
+List<Integer> A2 = new List<Integer>();
+System.debug(Arr); 
+for(Integer i=0;i<=10;i++){
+  if(Math.mod(Arr[i], 2)==0)
+  {
+    A1.add(Arr[i]);
+  }
+    else{
+            A2.add(Arr[i]);
+    }
+}
+System.debug('Четные числа: '+ A1);
+System.debug('Нечетные числа: '+ A2);

@@ -1,0 +1,5 @@
+Integer[] arr = new Integer[5];
+for(Integer i=0;i<=4;i++){
+    arr[i]=i+1;
+}
+System.debug(arr);
