@@ -1,4 +1,0 @@
-for(Integer i=1;i<=10;i++){
-  Integer a=3*i;
-    System.debug('3 * '+i+' = '+a);
-}
