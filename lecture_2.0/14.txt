@@ -1,0 +1,14 @@
+Integer N = 25;
+Boolean flag = true;
+Set<Integer> simple = new Set<Integer>();
+
+for(Integer j = 2; j <= N; j++){
+    for(Integer i = 2; i <= (Math.sqrt(j)) + 1; i++){
+    if( Math.mod(j, i) == 0){
+        flag = false;
+            break;
+   	 }
+    }if(flag == true){ simple.add(j);}
+    flag = true;
+} 
+System.debug(simple);
