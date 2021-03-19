@@ -17,9 +17,6 @@ public class TouristService {
                     && tourist_1.Email__c.equals(tourist_2.Email__c))
                 {
                     tourist_1.IsDuplicate__c = true;
-                    tourist_2.IsDuplicate__c = true;
-                    update  tourist_1;
-                    update  tourist_2;
                 }
             }
         }
