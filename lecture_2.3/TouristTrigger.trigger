@@ -9,9 +9,7 @@ trigger TouristTrigger on Tourist__c (before insert) {
         {
             if (touristFirst.Name == touristInsert.Name && touristFirst.Email__c == touristInsert.Email__c){
                 touristInsert.IsDuplicate__c = true;
-                touristFirst.IsDuplicate__c = true;
             }
         }
     }
-   update tourist;
 }
