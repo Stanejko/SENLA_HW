@@ -1,6 +1,7 @@
 public class TouristManager{
-	public static List<Tourist__c> byName(String name){
-		if (String.isBlank(name)){
+	
+	public static List<Tourist__c> byName(String name) {
+		if (String.isBlank(name)) {
 			return new List<Tourist__c>();
 		}
 		String expression = '%' + name + '%';
@@ -12,7 +13,7 @@ public class TouristManager{
 		        WHERE Name LIKE :expression];
 	}
 
-	public static List<Tourist__c> byAges(Set<Integer> ages){
+	public static List<Tourist__c> byAges(Set<Integer> ages) {
 		if (ages.isEmpty() == true){
 			return new List<Tourist__c>();
 		}
@@ -24,8 +25,8 @@ public class TouristManager{
 		        WHERE Age__c IN :ages];
 	}
 
-	public static List<Flight__c> byStartYear(Integer year){
-		if (year == null){
+	public static List<Flight__c> byStartYear(Integer year) {
+		if (year == null) {
 			return new List<Flight__c>();
 		}
 
@@ -36,7 +37,7 @@ public class TouristManager{
 		        WHERE CALENDAR_YEAR(Trip__r.Start_Date__c) = :year];
 	}
 
-	public static List<Flight__c> withListOfFlights(){
+	public static List<Flight__c> withListOfFlights() {
 
 		return [
 			SELECT Tourist_Name__r.Name, 
@@ -46,7 +47,7 @@ public class TouristManager{
 		        FROM Flight__c];
 	}
 
-	public static List<Tourist__c> withoutFlightRegistration(){
+	public static List<Tourist__c> withoutFlightRegistration() {
 
 		return [
 			SELECT Name,
