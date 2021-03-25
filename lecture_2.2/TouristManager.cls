@@ -4,6 +4,7 @@ public class TouristManager{
 		if (String.isBlank(name)) {
 			return new List<Tourist__c>();
 		}
+		
 		String expression = '%' + name + '%';
 
 		return [
@@ -14,7 +15,7 @@ public class TouristManager{
 	}
 
 	public static List<Tourist__c> byAges(Set<Integer> ages) {
-		if (ages.isEmpty() == true){
+		if (ages.isEmpty() == true) {
 			return new List<Tourist__c>();
 		}
 
