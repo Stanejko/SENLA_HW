@@ -1,5 +1,6 @@
 trigger TouristTrigger on Tourist__c (before insert) {
-    List<Tourist__c> tourist = [SELECT Name,
+    List<Tourist__c> tourist = [
+                                SELECT Name,
                                 Email__c
                                 FROM Tourist__c];
     
