@@ -11,7 +11,8 @@ public class TouristManager{
 			SELECT Name,
 			Age__c
 		        FROM Tourist__c
-		        WHERE Name LIKE :expression];
+		        WHERE Name LIKE :expression
+		];
 	}
 
 	public static List<Tourist__c> getTouristsByAges(Set<Integer> ages) {
@@ -23,7 +24,8 @@ public class TouristManager{
 			SELECT Name,
 			Age__c
 		        FROM Tourist__c
-		        WHERE Age__c IN :ages];
+		        WHERE Age__c IN :ages
+		];
 	}
 
 	public static List<Flight__c> getTouristsByStartYearFlight(Integer year) {
@@ -35,7 +37,8 @@ public class TouristManager{
 			SELECT Tourist_Name__r.Name, 
 			Tourist_Name__r.Age__c
 		        FROM Flight__c
-		        WHERE CALENDAR_YEAR(Trip__r.Start_Date__c) = :year];
+		        WHERE CALENDAR_YEAR(Trip__r.Start_Date__c) = :year
+		];
 	}
 
 	public static List<Flight__c> getTouristsWithListOfFlights() {
@@ -45,7 +48,8 @@ public class TouristManager{
 			Tourist_Name__r.Age__c,
 			Trip__r.Name,
 			Trip__r.Start_Date__c
-		        FROM Flight__c];
+		        FROM Flight__c
+		];
 	}
 
 	public static List<Tourist__c> getTouristsWithoutFlightRegistration() {
@@ -55,6 +59,7 @@ public class TouristManager{
 			Age__c
 		        FROM Tourist__c
 		        WHERE ID NOT IN (SELECT Tourist_Name__c
-		                         FROM Flight__c)];
+		                         FROM Flight__c)
+		];
 	}
 }
