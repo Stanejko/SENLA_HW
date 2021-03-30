@@ -58,8 +58,9 @@ public class TouristManager{
 			SELECT Name,
 			Age__c
 		        FROM Tourist__c
-		        WHERE ID NOT IN (SELECT Tourist_Name__c
-		                         FROM Flight__c)
+		        WHERE ID NOT IN (
+				SELECT Tourist_Name__c
+		                FROM Flight__c)
 		];
 	}
 }
