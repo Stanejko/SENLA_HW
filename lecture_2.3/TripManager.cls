@@ -6,9 +6,9 @@ public class TripManager {
         } 
         
         List<Trip__c> tripByAge = [
-            SELECT Minimum_Age__c
-            FROM Trip__c
-            WHERE Id IN :newTrip
+                                    SELECT Minimum_Age__c
+                                    FROM Trip__c
+                                    WHERE Id IN :newTrip
         ];
         
         return tripByAge;
