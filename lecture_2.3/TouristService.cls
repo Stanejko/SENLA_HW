@@ -11,8 +11,8 @@ public class TouristService {
 		
         List<Tourist__c> oldTourists = new List<Tourist__c>(TouristManager.getTouristByEmail(newTouristNames, newTouristEmails));
         
-        for (Tourist__c recordedTourists : oldTourists) {
-            for (Tourist__c enteredTourists : newTourists) {
+        for (Tourist__c recordedTourist : oldTourists) {
+            for (Tourist__c enteredTourist : newTourists) {
                 if (recordedTourists.Name == enteredTourists.Name && recordedTourists.Email__c == enteredTourists.Email__c) {
                     enteredTourists.IsDuplicate__c = true;
                 }
