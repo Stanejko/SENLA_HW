@@ -19,6 +19,9 @@ public class FlightTriggerHandler {
 			if (tourist.Age__c < trip.Minimum_Age__c) {
 				flight.addError('You are not the right age!');
 			}
+			if (flightnew.Status__c == 'Past') {
+                		flightnew.addError('The flight has already departed!');
+            		}
 		}
 	}
 }
