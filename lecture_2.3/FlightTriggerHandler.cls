@@ -1,5 +1,5 @@
 public class FlightTriggerHandler {
-	public static Boolean wasExecuted = true;
+	public static Boolean wasExecuted = false;
 	
 	public static void checkingAgeOfTourists(List<Flight__c> newFlights) {
 		
