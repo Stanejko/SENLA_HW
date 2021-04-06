@@ -18,7 +18,5 @@ public class TouristService {
                 }
             }
         }
-        
-        update oldTourists;
-	}
+   }
 }
