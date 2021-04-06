@@ -1,5 +1,6 @@
 public class TouristService {
-    
+	public static Boolean wasExecuted;
+	
 	public static void markDuplicates(List<Tourist__c> newTourists) {
         Set<String> newTouristNames = new Set<String>();
         Set<String> newTouristEmails = new Set<String>();
