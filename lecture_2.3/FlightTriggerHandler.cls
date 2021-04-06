@@ -1,4 +1,6 @@
 public class FlightTriggerHandler {
+	public static Boolean wasExecuted;
+	
 	public static void checkingAgeOfTourists(List<Flight__c> newFlights) {
 		
 		Set<String> idTourist = new Set<String>();
