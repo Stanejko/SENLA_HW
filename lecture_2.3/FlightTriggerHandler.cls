@@ -11,8 +11,8 @@ public class FlightTriggerHandler {
 			idTrips.add(newFlight.Trip__c);
 		}
 
-		Map<Id, Tourist__c> searchTourists = new Map<Id, Tourist__c>(FlightManager.getTouristByAge(idTourists));
-		Map<Id, Trip__c> searchTrips = new Map<Id, Trip__c>(FlightManager.getTripByAge(idTrips));
+		Map<Id, Tourist__c> searchTourists = new Map<Id, Tourist__c>(TouristManager.getTouristByAges(idTourists));
+		Map<Id, Trip__c> searchTrips = new Map<Id, Trip__c>(TripManager.getTripByAges(idTrips));
 
 		for (Flight__c flightnew : newFlights) {
 			Tourist__c tourist = searchTourists.get(flight.Tourist_Name__c);
