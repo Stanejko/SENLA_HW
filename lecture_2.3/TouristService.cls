@@ -19,4 +19,22 @@ public class TouristService {
             }
         }
    }
+	
+ 	public static void flightStatusChange(List<Tourist__c> tourists) {
+        Set<String> inactiveTourist = new Set<String>();
+        
+        for (Tourist__c tourist : tourists) { 
+            if (tourist.Active__c == false) {
+                inactiveTourist.add(tourist.id);
+            }
+        }
+        
+        List<Flight__c> flights = new List<Flight__c>(TouristManager.getFlightsByInactiveTourists(inactiveTourist));
+        
+        for (Flight__c flight : flights) {
+            flight.Status_of_flight__c = 'Declined';
+        }
+        
+        update flights;
+    }	
 }
