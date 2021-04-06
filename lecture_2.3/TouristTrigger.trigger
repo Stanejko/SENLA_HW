@@ -1,7 +1,7 @@
 trigger TouristTrigger on Tourist__c (before insert, after update) {
 
-    if (TouristService.wasExecuted) {
-        TouristService.wasExecuted = false;
+    if (!TouristService.wasExecuted) {
+        TouristService.wasExecuted = true;
         
         switch on Trigger.operationType {
             when BEFORE_INSERT {
