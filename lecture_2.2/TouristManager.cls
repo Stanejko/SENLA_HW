@@ -9,7 +9,7 @@ public class TouristManager{
 
 		return [
 			SELECT Name,
-			Age__c
+			       Age__c
 		        FROM Tourist__c
 		        WHERE Name LIKE :expression
 		];
@@ -22,7 +22,7 @@ public class TouristManager{
 
 		return [
 			SELECT Name,
-			Age__c
+			       Age__c
 		        FROM Tourist__c
 		        WHERE Age__c IN :ages
 		];
@@ -35,7 +35,7 @@ public class TouristManager{
 
 		return [
 			SELECT Tourist_Name__r.Name, 
-			Tourist_Name__r.Age__c
+			       Tourist_Name__r.Age__c
 		        FROM Flight__c
 		        WHERE CALENDAR_YEAR(Trip__r.Start_Date__c) = :year
 		];
@@ -45,9 +45,9 @@ public class TouristManager{
 
 		return [
 			SELECT Tourist_Name__r.Name, 
-			Tourist_Name__r.Age__c,
-			Trip__r.Name,
-			Trip__r.Start_Date__c
+			       Tourist_Name__r.Age__c,
+			       Trip__r.Name,
+			       Trip__r.Start_Date__c
 		        FROM Flight__c
 		];
 	}
@@ -56,11 +56,20 @@ public class TouristManager{
 
 		return [
 			SELECT Name,
-			Age__c
+			       Age__c
 		        FROM Tourist__c
 		        WHERE ID NOT IN (
-				SELECT Tourist_Name__c
-		                FROM Flight__c)
+					  SELECT Tourist_Name__c
+		               		  FROM Flight__c)
 		];
 	}
+	
+	 public static List<Tourist__c> getTouristByEmail(Set<String> newNames, Set<String> newEmails) {
+       		 return [
+            		  SELECT Name,
+            		         Email__c
+            		  FROM Tourist__c
+            		  WHERE Name = :newNames AND Email__c = :newEmails
+        	];
+   	 }
 }
