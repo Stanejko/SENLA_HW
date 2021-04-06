@@ -72,4 +72,12 @@ public class TouristManager{
             		  WHERE Name = :newNames AND Email__c = :newEmails
         	];
    	 }
+	
+	 public static List<Flight__c> getFlightsByInactiveTourists(Set<String> inactiveTourist) {
+       		 return [
+            		  SELECT Status__c
+            		  FROM Flight__c
+            		  WHERE Tourist_Name__r.Id IN :inactiveTourist
+      		];
+    	 }
 }
