@@ -1,6 +1,5 @@
-public class FlightTriggerHandler{
-	public static void checkingAgeOfTourists(List<Flight__c> newFlights){
-		if (newFlights == null || newFlights.isEmpty()) return;
+public class FlightTriggerHandler {
+	public static void checkingAgeOfTourists(List<Flight__c> newFlights) {
 		
 		Set<String> idTourist = new Set<String>();
 		Set<String> idTrip = new Set<String>();
@@ -10,16 +9,8 @@ public class FlightTriggerHandler{
 			idTrip.add(newFlight.Trip__c);
 		}
 
-		Map<Id, Tourist__c> searchTourist = new Map<Id, Tourist__c>([
-									     SELECT Age__c
-		                                                             FROM Tourist__c
-		                                                             WHERE Id IN :idTourist
-		]);
-		Map<Id, Trip__c> searchTrip = new Map<Id, Trip__c>([	
-							            SELECT Minimum_Age__c
-		                                                    FROM Trip__c
-		                                                    WHERE Id IN :idTrip
-		]);
+		Map<Id, Tourist__c> searchTourist = new Map<Id, Tourist__c>(FlightManager.getTouristByAge(idTourist));
+		Map<Id, Trip__c> searchTrip = new Map<Id, Trip__c>(FlightManager.getTripByAge(idTrip));
 
 		for (Flight__c flight : newFlights) {
 			Tourist__c tourist = searchTourist.get(flight.Tourist_Name__c);
