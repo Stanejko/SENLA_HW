@@ -17,7 +17,10 @@ public class ExceptionsPlayground {
         try {
             	generateCustomException();
             	generateRegularException();
-        } catch(Exception ex) {
+        } catch(CustomException ce) {
+            System.debug('Custom Exception!');
+        }
+        catch(Exception ex) {
             System.debug(ex.getMessage());
         } finally {
             System.debug('Method handleExceptions executed');
