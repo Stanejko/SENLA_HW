@@ -15,8 +15,8 @@ public class FlightTriggerHandler {
 		Map<Id, Trip__c> searchTrips = new Map<Id, Trip__c>(TripManager.getTripByAges(idTrips));
 
 		for (Flight__c flightnew : newFlights) {
-			Tourist__c tourist = searchTourists.get(flight.Tourist_Name__c);
-			Trip__c trip = searchTrips.get(flight.Trip__c);
+			Tourist__c tourist = searchTourists.get(flightnew.Tourist_Name__c);
+			Trip__c trip = searchTrips.get(flightnew.Trip__c);
 
 			if (tourist.Age__c < trip.Minimum_Age__c) {
 				flightnew.addError('You are not the right age!');
