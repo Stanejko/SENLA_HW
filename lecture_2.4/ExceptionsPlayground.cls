@@ -10,6 +10,8 @@ public class ExceptionsPlayground {
             	Integer i = 28 / 0;
         } catch(Exception e) {
             System.debug(e.getMessage() + e.getStackTraceString());
+        } finally {
+            System.debug('Regular Exception');
         }
     }
     
