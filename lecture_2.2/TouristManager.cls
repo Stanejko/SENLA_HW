@@ -49,15 +49,15 @@ public class TouristManager{
         	];
    	 }
 	
-	public static List<Tourist__c> getTouristByAges(Set<String> newTourist) {
-        	if (newTourist == null || newTourist.isEmpty()) {
+	public static List<Tourist__c> getTouristByAges(Set<String> newTourists) {
+        	if (newTourists == null || newTourists.isEmpty()) {
            	 return new List<Tourist__c>();
         	} 
         
         	List<Tourist__c> touristByAge = [
         					 SELECT Age__c
             					 FROM Tourist__c
-           					 WHERE Id IN :newTourist
+           					 WHERE Id IN :newTourists
         	];
         
         	return touristByAge;
