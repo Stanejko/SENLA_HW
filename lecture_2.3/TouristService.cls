@@ -22,15 +22,15 @@ public class TouristService {
    }
 	
  	public static void flightStatusChange(List<Tourist__c> tourists) {
-        Set<String> inactiveTourist = new Set<String>();
+        Set<String> inactiveTourists = new Set<String>();
         
         for (Tourist__c tourist : tourists) { 
             if (tourist.Active__c == false) {
-                inactiveTourist.add(tourist.id);
+                inactiveTourists.add(tourist.id);
             }
         }
         
-        List<Flight__c> flights = new List<Flight__c>(TouristManager.getFlightsByInactiveTourists(inactiveTourist));
+        List<Flight__c> flights = new List<Flight__c>(FlightManager.getFlightsByInactiveTourists(inactiveTourists));
         
         for (Flight__c flight : flights) {
             flight.Status_of_flight__c = 'Declined';
