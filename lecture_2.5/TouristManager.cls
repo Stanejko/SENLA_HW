@@ -8,10 +8,10 @@ public class TouristManager{
 		String expression = '%' + name + '%';
 
 		return [
-				SELECT Name,
-					   Age__c
-		        FROM Tourist__c
-		        WHERE Name LIKE :expression
+			 SELECT Name,
+			        Age__c
+		         FROM Tourist__c
+		         WHERE Name LIKE :expression
 		];
 	}
 
@@ -21,30 +21,30 @@ public class TouristManager{
 		}
 
 		return [
-				SELECT Name,
-				       Age__c
-		        FROM Tourist__c
-		        WHERE Age__c IN :ages
+			 SELECT Name,
+				Age__c
+		         FROM Tourist__c
+		         WHERE Age__c IN :ages
 		];
 	}
 
 	public static List<Tourist__c> getTouristsWithoutFlightRegistration() {
 		return [
-				SELECT Name,
-			           Age__c
-		        FROM Tourist__c
-		        WHERE ID NOT IN (
-									SELECT Tourist_Name__c
-		                			FROM Flight__c)
+		         SELECT Name,
+			        Age__c
+		         FROM Tourist__c
+		         WHERE ID NOT IN (
+					   SELECT Tourist_Name__c
+		                	   FROM Flight__c)
 		];
 	}
     
     public static List<Tourist__c> getTouristByEmail(Set<String> newNames, Set<String> newEmails) {
         return [
-            	SELECT Name,
-            		   Email__c
-            	FROM Tourist__c
-            	WHERE Name = :newNames AND Email__c = :newEmails
+            	 SELECT Name,
+            		Email__c
+            	 FROM Tourist__c
+            	 WHERE Name = :newNames AND Email__c = :newEmails
         ];
     }
     
@@ -54,9 +54,9 @@ public class TouristManager{
         } 
         
         List<Tourist__c> touristByAge = [
-        	SELECT Age__c
-            FROM Tourist__c
-            WHERE Id IN :newTourists
+        				  SELECT Age__c
+           				  FROM Tourist__c
+             				  WHERE Id IN :newTourists
         ];
         
         return touristByAge;
@@ -68,10 +68,10 @@ public class TouristManager{
         } 
         
         List<Tourist__c> tourists = [
-            SELECT Name,
-            Email__c
-            FROM Tourist__c
-            WHERE id IN : newTouristsId
+            			      SELECT Name,
+            				     Email__c
+            			      FROM Tourist__c
+                                      WHERE id IN : newTouristsId
         ];
         
         return tourists;
