@@ -6,13 +6,7 @@ public class ExceptionsPlayground {
     }
     
     public static void generateRegularException() {
-        try {
-            	Integer i = 28 / 0;
-        } catch(Exception e) {
-            System.debug(e.getMessage() + e.getStackTraceString());
-        } finally {
-            System.debug('Regular Exception');
-        }
+        
     }
     
     public static void handleExceptions() {
