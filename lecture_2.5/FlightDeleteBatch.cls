@@ -1,10 +1,10 @@
 public class FlightDeleteBatch implements Database.Batchable<sObject>, Database.Stateful {
     
+    private Date ControlDate = Date.today() - Constants.FLIGHT_DELITION_PERIOD_DAYS;
     private String query = 'SELECT Id, Tourist_Name__r.Name, ' +
             		       'Tourist_Name__r.Id ' +
             		       'FROM Flight__c ' +
-             		       'WHERE Status_of_flight__c = \'Declined\'';
-    
+             		       'WHERE Status_of_flight__c = \'Declined\' AND СreatedDate < :ControlDate';
     Map<Id, Integer>  deleteFlightsByTourists = new Map<Id, Integer>();
     
     public Database.QueryLocator start(Database.BatchableContext bc) {
