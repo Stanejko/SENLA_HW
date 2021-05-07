@@ -6,7 +6,11 @@ public class ExceptionsPlayground {
     }
     
     public static void generateRegularException() {
-        
+         try {
+            	Integer i = 28 / 0;
+         } finally {
+             System.debug('Method generateRegularException executed');
+         }
     }
     
     public static void handleExceptions() {
