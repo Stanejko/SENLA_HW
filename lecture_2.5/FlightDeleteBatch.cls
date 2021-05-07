@@ -1,11 +1,11 @@
 public class FlightDeleteBatch implements Database.Batchable<sObject>, Database.Stateful {
     
-    private String query =   'SELECT Id, Tourist_Name__r.Name, ' +
-            		     'Tourist_Name__r.Id ' +
-            		     'FROM Flight__c ' +
-             		     'WHERE Status_of_flight__c = \'Declined\'';
+    private String query = 'SELECT Id, Tourist_Name__r.Name, ' +
+            		       'Tourist_Name__r.Id ' +
+            		       'FROM Flight__c ' +
+             		       'WHERE Status_of_flight__c = \'Declined\'';
     
-    Map<Id, Integer>  tourists = new Map<Id, Integer>();
+    Map<Id, Integer>  deleteFlightsByTourists = new Map<Id, Integer>();
     
     public Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator(query);
@@ -19,12 +19,12 @@ public class FlightDeleteBatch implements Database.Batchable<sObject>, Database.
             Flight__c flight = flightById.get(dr.getId());
 
             if (dr.isSuccess()) {
-                Integer count = tourists.get(flight.Tourist_Name__r.id);
+                Integer count = deleteFlightsByTourists.get(flight.Tourist_Name__r.id);
                 
                 if (count == null) {
-                    tourists.put(flight.Tourist_Name__r.id, 0);
+                    deleteFlightsByTourists.put(flight.Tourist_Name__r.id, 0);
                 } 
-                tourists.put(flight.Tourist_Name__r.id, count+1);
+                deleteFlightsByTourists.put(flight.Tourist_Name__r.id, count+1);
             }
             
         }
@@ -32,32 +32,17 @@ public class FlightDeleteBatch implements Database.Batchable<sObject>, Database.
     
     public void finish(Database.BatchableContext bc) {
         
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();  
+        Set<id> touristId = deleteFlightsByTourists.keySet();
+        List<Tourist__c> touristsInfo = TouristManager.getById(touristId);
+        MyCustomType__mdt email = [
+            						SELECT Email__c
+            						FROM MyCustomType__mdt
+         ];
         
-        AsyncApexJob job = [
-            		     SELECT Id,
-           	 	     Status,
-            		     NumberOfErrors,
-            		     JobItemsProcessed,
-                             TotalJobItems,
-                             CreatedBy.Email
-            		     FROM AsyncApexJob
-            		     WHERE Id = :bc.getJobId()
-        ];
-        
-        Set<id> touristId = tourists.keySet();
-        List<Tourist__c> touristsInfo = [ 
-        				  SELECT id,
-            				  Name,
-            				  Age__c
-        				  FROM Tourist__c
-        				  WHERE id IN :touristId
-        ];
-        
-        String[] email = new String[]{job.CreatedBy.Email};
-        mail.setToAddresses(email);
+        String[] emails = new String[]{email.Email__c};
+        mail.setToAddresses(emails);
         mail.setReplyTo(Constants.SEND_EMAIL);
-        mail.setSubject('Batch Processing '+job.Status);
         mail.setPlainTextBody('Info by tourists:' + touristsInfo +tourists );
         Messaging.sendEmail(new Messaging.Singleemailmessage[] {mail});
     }
