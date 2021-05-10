@@ -1,6 +1,6 @@
 global class FlightScheduleJob implements Schedulable  {
    
-    public static String CRON_EXP = '0 0 0 1/1 * ? *';
+    public static String CRON_EXP = '0 30 * * * ?';
     
     global static String scheduleFlight() {
     	FlightScheduleJob flightSchedule = new FlightScheduleJob();
