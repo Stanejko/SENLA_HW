@@ -33,8 +33,8 @@ public class FlightDeleteBatch implements Database.Batchable<sObject>, Database.
     public void finish(Database.BatchableContext bc) {
         
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();  
-        Set<id> touristId = deleteFlightsByTourist.keySet();
-        List<Tourist__c> touristsInfo = TouristManager.getById(touristId);
+        Set<id> touristIds = deleteFlightsByTourist.keySet();
+        List<Tourist__c> touristsInfo = TouristManager.getById(touristIds);
         MyCustomType__mdt email = [
             						SELECT Email__c
             						FROM MyCustomType__mdt
