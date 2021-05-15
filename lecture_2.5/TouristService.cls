@@ -5,10 +5,10 @@ public class TouristService {
         Set<Id> newTouristsIds = new Set<Id>();
         
         for ( Tourist__c touristNew : newTourists) {
-            newTouristsId.add(touristNew.Id);
+            newTouristsIds.add(touristNew.Id);
         } 
 		
-        TouristService.markDuplicatesAsync(newTouristsId);       
+        TouristService.markDuplicatesAsync(newTouristsIds);       
    }
 	
  	public static void flightStatusChange(List<Tourist__c> tourists) {
@@ -16,11 +16,11 @@ public class TouristService {
         
         for (Tourist__c tourist : tourists) { 
             if (tourist.Active__c == false) {
-                inactiveTourist.add(tourist.id);
+                inactiveTourists.add(tourist.id);
             }
         }
         
-        List<Flight__c> flights = new List<Flight__c>(FlightManager.getFlightsByInactiveTourists(inactiveTourist));
+        List<Flight__c> flights = new List<Flight__c>(FlightManager.getFlightsByInactiveTourists(inactiveTourists));
         
         for (Flight__c flight : flights) {
             flight.Status_of_flight__c = 'Declined';
@@ -30,11 +30,11 @@ public class TouristService {
     }	
     
     @future
-    public static void markDuplicatesAsync(Set<Id> newTouristsId) {
+    public static void markDuplicatesAsync(Set<Id> newTouristsIds) {
         Set<String> newTouristNames = new Set<String>();
         Set<String> newTouristEmails = new Set<String>();
         
-        List<Tourist__c> newTourists = new List<Tourist__c>(TouristManager.getById(newTouristsId));
+        List<Tourist__c> newTourists = new List<Tourist__c>(TouristManager.getById(newTouristsIds));
         
         for ( Tourist__c touristNew : newTourists) {
             newTouristNames.add(touristNew.Name);
