@@ -43,10 +43,10 @@ public class TouristService {
 		
         List<Tourist__c> oldTourists = new List<Tourist__c>(TouristManager.getTouristByEmail(newTouristNames, newTouristEmails));
         
-        for (Tourist__c recordedTourists : oldTourists) {
-            for (Tourist__c enteredTourists : newTourists) {
-                if (recordedTourists.Id != enteredTourists.Id && recordedTourists.Name == enteredTourists.Name && recordedTourists.Email__c == enteredTourists.Email__c) {
-                    enteredTourists.IsDuplicate__c = true;
+        for (Tourist__c recordedTourist : oldTourists) {
+            for (Tourist__c enteredTourist : newTourists) {
+                if (recordedTourist.Id != enteredTourist.Id && recordedTourist.Name == enteredTourist.Name && recordedTourist.Email__c == enteredTourist.Email__c) {
+                    enteredTourist.IsDuplicate__c = true;
                 }
             }
         }
