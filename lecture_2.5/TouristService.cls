@@ -2,7 +2,7 @@ public class TouristService {
 	public static Boolean wasExecuted = false;
 	
 	public static void markDuplicates(List<Tourist__c> newTourists) {
-        Set<Id> newTouristsId = new Set<Id>();
+        Set<Id> newTouristsIds = new Set<Id>();
         
         for ( Tourist__c touristNew : newTourists) {
             newTouristsId.add(touristNew.Id);
@@ -12,7 +12,7 @@ public class TouristService {
    }
 	
  	public static void flightStatusChange(List<Tourist__c> tourists) {
-        Set<String> inactiveTourist = new Set<String>();
+        Set<String> inactiveTourists = new Set<String>();
         
         for (Tourist__c tourist : tourists) { 
             if (tourist.Active__c == false) {
