@@ -5,7 +5,7 @@ public class FlightDeleteBatch implements Database.Batchable<sObject>, Database.
             		       'Tourist_Name__r.Id ' +
             		       'FROM Flight__c ' +
              		       'WHERE Status_of_flight__c = \'Declined\' AND СreatedDate < :ControlDate';
-    Map<Id, Integer>  deleteFlightsByTourists = new Map<Id, Integer>();
+    private Map<Id, Integer>  deleteFlightsByTourists = new Map<Id, Integer>();
     
     public Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator(query);
