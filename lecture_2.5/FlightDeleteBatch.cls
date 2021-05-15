@@ -5,7 +5,7 @@ public class FlightDeleteBatch implements Database.Batchable<sObject>, Database.
             		       'Tourist_Name__r.Id ' +
             		       'FROM Flight__c ' +
              		       'WHERE Status_of_flight__c = \'Declined\' AND СreatedDate < :ControlDate';
-    private Map<Id, Integer>  deleteFlightsByTourists = new Map<Id, Integer>();
+    private Map<Id, Integer>  deleteFlightsByTourist = new Map<Id, Integer>();
     
     public Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator(query);
@@ -19,12 +19,12 @@ public class FlightDeleteBatch implements Database.Batchable<sObject>, Database.
             Flight__c flight = flightById.get(dr.getId());
 
             if (dr.isSuccess()) {
-                Integer count = deleteFlightsByTourists.get(flight.Tourist_Name__r.id);
+                Integer count = deleteFlightsByTourist.get(flight.Tourist_Name__r.id);
                 
                 if (count == null) {
-                    deleteFlightsByTourists.put(flight.Tourist_Name__r.id, 0);
+                    deleteFlightsByTourist.put(flight.Tourist_Name__r.id, 0);
                 } 
-                deleteFlightsByTourists.put(flight.Tourist_Name__r.id, count+1);
+                deleteFlightsByTourist.put(flight.Tourist_Name__r.id, count+1);
             }
             
         }
@@ -33,7 +33,7 @@ public class FlightDeleteBatch implements Database.Batchable<sObject>, Database.
     public void finish(Database.BatchableContext bc) {
         
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();  
-        Set<id> touristId = deleteFlightsByTourists.keySet();
+        Set<id> touristId = deleteFlightsByTourist.keySet();
         List<Tourist__c> touristsInfo = TouristManager.getById(touristId);
         MyCustomType__mdt email = [
             						SELECT Email__c
